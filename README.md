@@ -1,0 +1,1 @@
+# sova2_frontend
