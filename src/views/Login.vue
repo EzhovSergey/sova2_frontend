@@ -55,6 +55,7 @@
 </template>
 
 <script>
+// import { mapGetters } from 'vuex'
 import { email, required, minLength } from 'vuelidate/lib/validators'
 export default {
   name: 'login',
@@ -67,18 +68,15 @@ export default {
     password: { required, minLength: minLength(6) }
   },
   methods: {
-    submitHandler () {
+    async submitHandler () {
       if (this.$v.$invalid) {
         this.$v.$touch()
         return
       }
-      const formData = {
-        email: this.email,
-        password: this.password
-      }
-      console.log(formData)
-      this.$router.push('/tests')
+      this.$router.push('/')
     }
   }
+  // computed: mapGetters([''])
 }
+
 </script>

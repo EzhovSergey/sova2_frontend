@@ -110,7 +110,7 @@ export default {
         password: this.password
       }
       console.log(formData)
-      this.$router.push('/tests')
+      this.$router.push('/')
     }
   }
 }

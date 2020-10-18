@@ -6,5 +6,8 @@
         <router-link to="/create_test">создать тест</router-link>
       </div>
     </div>
+    <div class="main-page">
+
+    </div>
   </div>
 </template>

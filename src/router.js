@@ -4,6 +4,12 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
+  { // Удалить
+    path: '/testDelite',
+    name: 'testDelite',
+    meta: { layout: 'empty' },
+    component: () => import('./views/TestDelite.vue')
+  },
   {
     path: '/login',
     name: 'login',
@@ -17,7 +23,7 @@ const routes = [
     component: () => import('./views/Register.vue')
   },
   {
-    path: '/tests',
+    path: '/',
     name: 'tests',
     meta: { layout: 'main' },
     component: () => import('./views/Tests.vue')

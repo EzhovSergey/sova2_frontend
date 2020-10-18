@@ -2,14 +2,14 @@
   <div class='main-layout'>
     <header class="navbar">
       <div class="title-main-layout">
-        <router-link to="/tests">
+        <router-link to="/">
         <img src="#" alt="logo">
         <div class="name-main-layout">sova</div>
         </router-link>
       </div>
       <nav class="top-menu">
         <ul>
-          <li><router-link to="/tests">Мои тесты</router-link></li>
+          <li><router-link to="/">Мои тесты</router-link></li>
           <li><router-link to="#">Профиль</router-link></li>
           <li><router-link to="/login">Выход</router-link></li>
         </ul>
