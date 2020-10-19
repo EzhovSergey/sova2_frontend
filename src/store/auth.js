@@ -1,17 +1,20 @@
+import Axios from 'axios'
+
 export default {
   actions: {
+    // use camelCase !!!//
     async fetch_loginInfo ({ commit }) {
-      const res = await fetch('http://localhost:8081/test', {
-        mode: 'no-cors'
-      })
-      console.log(res)
-      const loginInfo = await res.json()
-      console.log(loginInfo)
-      commit('update_loginInfo', loginInfo)
+      await Axios.get('http://localhost:8081/test')
+        .then(res => {
+          const raw = res.data
+          commit('update_loginInfo', raw)
+        })
     }
   },
   mutations: {
+    // use camelCase !!!//
     update_loginInfo (state, loginInfo) {
+      console.log(loginInfo)
       state.loginInfo = loginInfo
     }
   },
@@ -19,6 +22,7 @@ export default {
     loginInfo: []
   },
   getters: {
+    // use camelCase !!!//
     all_loginInfo (state) {
       return state.loginInfo
     }
