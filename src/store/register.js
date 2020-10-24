@@ -2,15 +2,18 @@ import Axios from 'axios'
 
 export default {
   actions: {
-    async register ({ commit }, { formDataRegister }) {
-      await Axios.post('http://localhost:8081/register',
-        {
-          header: {
-            mode: 'no-cors'
-          },
-          body: formDataRegister
+    async register ({ commit }, formDataRegister) {
+      console.log(formDataRegister)
+      // const jsonForm = JSON.stringify(formDataRegister)
+      await Axios({
+        url: 'http://localhost:8081/register',
+        method: 'post',
+        data: { body: JSON.stringify(formDataRegister) },
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
-      )
+
+      })
         .then(res => {
           const raw = res.token
           const status = res.status
