@@ -3,20 +3,20 @@
       <div class="card-content">
         <span class="card-title">Регистрация</span>
         <div class="input-field">
-          <span class="name-field">Ф.И.О.</span>
+          <span clas="name-field">Ф.И.О.</span>
           <input
-            id="name"
+            id="fio"
             type="text"
-            v-model.trim="name"
-            :class="{invalid: $v.name.$dirty && !$v.name.required}"
+            v-model.trim="fio"
+            :class="{invalid: $v.fio.$dirty && !$v.fio.required}"
           >
           <small
             class="helper-text invalid"
-            v-if="$v.name.$dirty && !$v.name.required"
+            v-if="$v.fio.$dirty && !$v.fio.required"
           >Поле Ф.И.О. не должно быть пустым</small>
         </div>
         <div class="input-field">
-          <span class="name-field">Email</span>
+          <span class="fio-field">Email</span>
           <input
             id="email"
             type="text"
@@ -87,13 +87,13 @@ import { email, required, sameAs, minLength } from 'vuelidate/lib/validators'
 export default {
   name: 'register',
   data: () => ({
-    name: '',
+    fio: '',
     email: '',
     password: '',
     repeat_password: ''
   }),
   validations: {
-    name: { required },
+    fio: { required },
     email: { email, required },
     password: { required, minLength: minLength(6) },
     repeat_password: { sameAsPassword: sameAs('password') }
@@ -104,13 +104,17 @@ export default {
         this.$v.$touch()
         return
       }
-      const formData = {
-        name: this.name,
+
+      const formDataRegister = {
+        fio: this.fio,
         email: this.email,
         password: this.password
       }
-      console.log(formData)
-      this.$router.push('/')
+      this.$store.dispatch('register', formDataRegister)
+
+      if (this.$store.getters.status === 200) {
+        this.$router.push('/')
+      } else console.log('error register') // добавить в html сообщение об ошибке
     }
   }
 }

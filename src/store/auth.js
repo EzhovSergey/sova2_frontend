@@ -1,28 +1,30 @@
-// import axios from 'axios'
-// export default {
-//   actions: {
-//     fetch_loginInfo () {
-//       const config = {
-//         headers: {
-//           mode: 'no-cors'
-//         }
-//       }
-//       axios
-//         .get('http://localhost:8081/test', config)
-//         .then(response => (this.loginInfo = response))
-//     }
-//   },
-//   mutations: {
-//     update_loginInfo (state, loginInfo) {
-//       state.loginInfo = loginInfo
-//     }
-//   },
-//   state: {
-//     loginInfo: []
-//   },
-//   getters: {
-//     all_loginInfo (state) {
-//       return state.loginInfo
-//     }
-//   }
-// }
+import Axios from 'axios'
+
+export default {
+  actions: {
+    // use camelCase !!!//
+    async fetch_loginInfo ({ commit }) {
+      await Axios.get('http://localhost:8081/test')
+        .then(res => {
+          const raw = res.data
+          commit('update_loginInfo', raw)
+        })
+    }
+  },
+  mutations: {
+    // use camelCase !!!//
+    update_loginInfo (state, loginInfo) {
+      console.log(loginInfo)
+      state.loginInfo = loginInfo
+    }
+  },
+  state: {
+    loginInfo: []
+  },
+  getters: {
+    // use camelCase !!!//
+    all_loginInfo (state) {
+      return state.loginInfo
+    }
+  }
+}

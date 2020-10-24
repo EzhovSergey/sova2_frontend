@@ -76,7 +76,6 @@ export default {
       this.$router.push('/')
     }
   }
-  // computed: mapGetters([''])
 }
 
 </script>
