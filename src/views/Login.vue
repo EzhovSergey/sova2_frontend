@@ -24,6 +24,7 @@
         <input
           id="password"
           type="password"
+          autocomplete="on"
           v-model.trim="password"
           :class="{invalid: ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength)}"
         >

@@ -5,10 +5,8 @@ export default {
     async register ({ commit }, { formDataRegister }) {
       await Axios.post('http://localhost:8081/register',
         {
-          header: {
-            mode: 'no-cors'
-          },
-          body: formDataRegister
+          // mode: 'no-cors',
+          data: () => (formDataRegister)
         }
       )
         .then(res => {

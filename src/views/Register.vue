@@ -37,6 +37,7 @@
           <input
             id="password"
             type="password"
+            autocomplete="on"
             v-model.trim="password"
             :class="{invalid: ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength)}"
           >
@@ -56,6 +57,7 @@
           <input
             id="repeat-password"
             type="password"
+            autocomplete="on"
             v-model.trim="repeat_password"
             :class="{invalid: ($v.repeat_password.$dirty && !$v.repeat_password.sameAsPassword)}"
           >
@@ -105,16 +107,16 @@ export default {
         return
       }
 
-      const formDataRegister = {
+      const formDataRegister = JSON.stringify({
         fio: this.fio,
         email: this.email,
         password: this.password
-      }
+      })
       this.$store.dispatch('register', formDataRegister)
 
       if (this.$store.getters.status === 200) {
         this.$router.push('/')
-      } else console.log('error register') // добавить в html сообщение об ошибке
+      } else console.log('error') // добавить в html сообщение об ошибке
     }
   }
 }
