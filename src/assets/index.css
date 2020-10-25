@@ -1,37 +1,47 @@
-.card-contet{
-	font-family: Oswald Regular,Verdana,sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap");
+.card-contet{/*Вид рабочего блока(Регистрация и Авторизация)*/
+	font-family: 'Oswald',Verdana,sans-serif;
 	display:flex;
 	flex-direction:column;
 	justify-content:center;
 	align-items:center;
 }
-.card{
-	border-style:none;
+.card{/*Вид рабочего блока(Регистрация и Авторизация)*/
+	border-style:solid;
+	border-color:silver;
+	border-width:2px;
 	background-color:white;
 	margin: 3% 15% 0% 15%;
-	padding: 0% 0% 1.65% 0%;
 	border-radius:0%;
 	font-size:130%;
 }
-.card-title{
+.card-title{/*Название рабочего блока(Регистрация и Авторизация)*/
 	text-align:center;
 	font-size: 150%;
 	margin:5% 0% 2% 0%;
+	font-family: 'Oswald',Verdana,sans-serif;
 }
-.input-field{
+.title-page{/*Название рабочего блока*/
+	text-align:center;
+	font-size: 150%;
+	margin:5% 0% 2% 0%;
+	font-family: 'Oswald',Verdana,sans-serif;
+}
+.input-field{/*Блок для поля ввода(+надписи ошибок)*/
 	width:60%;
 	align-self:center;
 	display:block;
 	margin:1% auto; 
+	font-family: 'Oswald',Verdana,sans-serif;
 }
-.card-action{
+.card-action{/*Блок кнопки войти-зарегистрироваться и надписи внизу*/
 	display:block;
 	text-align:center;
 }
-.center{
+.center{/*Надпись "Уже есть аккаунт?" и тд*/
 	font-size:70%;
 }
-.auth-submit{
+.auth-submit{/*Кнопка регистрации и авторизации*/
 	margin:2% auto 1%;
 	background-color:#FFD780;
 	font-size:90%;
@@ -39,46 +49,58 @@
 	border-radius:20px;
 	display:block;
 	align-self:center;
+	font-family: 'Oswald',Verdana,sans-serif;
 }
-.helper-text.invalid{
+.helper-text.invalid{/*Текст ошибки ввода данных пользователя*/
 	display:block;
 	position:relative;
 	font-size:70%;
 	color:red;
+	font-family: 'Oswald',Verdana,sans-serif;
 }
-.title-empty-layout{
+.title-empty-layout{/* Меню без кнопок*/
 	background-color:white;
-	padding:0% 0% 1% 0%;
+	padding:0% 0% 1.5% 0%;
+	height:70px;
 }
-.navbar{
+.title-main-layout{/*Меню с кнопками*/
+	padding:0% 0% 1.5% 0%;
+	display:inline;
+	width:15%;
+}
+.title-main-layout a:hover{
+	text-decoration:none;
+}
+.navbar{/*Меню с кнопками*/
 	display:flex;
 	flex-direction:row;
+	align-content:top;
 	justify-content:space-between;
 	background-color:white;
-	height:80px;
+	height:70px;
 }
-.top-menu li{
-	background-color:yellow;
+.top-menu li{/*Кнопки меню по отдельности*/
+	background-color:#FFD780;
 	display:flex;
-	margin: 1% 2%;
+	margin: 2% 2%;
 	border-radius:20px;
 	text-align:center;
 	align-items:center;
-	padding:2% 3%;
+	padding:0% 4%;
 }
-.top-menu ul{
+.top-menu ul{/*Кнопки меню вместе*/
 	display:flex;
 	align-items:stretch;
 	justify-content:space-around;
-	width:320px;
-	height:60px;
+	width:290px;
+	height:55px;
 	list-style-type:none;
 }
-span{
+span{/*Надписи ФИО,Email и тд*/
 	display:block;
 	margin:1% 0%;
 }
-input{
+input{/*поле для ввода*/
 	color:black;
 	font-size:70%;
 	text-align:center;
@@ -88,6 +110,66 @@ input{
 	border-color:#FFD780;
 	border-style:solid;
 }
-body{
+body{/*весь сайт*/
 	background-color:silver;
+	background-image:url("/img/background.jpg");
+	background-size:90%;
+}
+.logo-main{/*лого меню с кнопками*/
+	height:50px;
+	margin:1% 9% 0% 0.7%;
+}
+.logo-empty{/*лого меню без кнопок*/
+	margin:0.7% 1.3%;
+	height:50px;
+}
+.name-main-layout{
+	display:inline;
+	color:black;
+	font-size:110%;
+	font-family: 'Oswald',Verdana,sans-serif;
+	margin:0% 0.2% 0% 0%;
+}
+
+.name-empty-layout{
+	display:inline;
+	color:black;
+	font-size:110%;
+	margin:0% 0.2% 0% 0%;
+	font-family: 'Oswald',Verdana,sans-serif;
+}
+.main-page-tests{
+	border-style:solid;
+	border-color:silver;
+	border-width:2px;
+	background-color:white;
+	margin: 3% 15% 0% 15%;
+	border-radius:0%;
+	font-size:130%;
+	font-family: 'Oswald',Verdana,sans-serif;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+.title-page{
+	margin: 20% 0%;
+}
+.button-create-test{
+	display:block;
+	text-align:center;
+	border-style:solid;
+	border-color:#FFD780;
+	border-radius:20px;
+	margin:20% 0% 30% auto;
+	padding:3% 10% 7% 10%;
+	width:110%;
+}
+li a,.button-create-test a{
+	font-family: 'Oswald',Verdana,sans-serif;
+	color:black;
+}
+li a:hover,.button-create-test a:hover{
+	color:gray;
+	text-decoration:none;
 }
