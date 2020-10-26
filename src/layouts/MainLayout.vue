@@ -3,7 +3,7 @@
     <header class="navbar">
       <div class="title-main-layout">
         <router-link to="/">
-        <img src="#" alt="logo">
+        <img src="/img/logo.jpg" alt="logo" class="logo-main">
         <div class="name-main-layout">sova</div>
         </router-link>
       </div>
