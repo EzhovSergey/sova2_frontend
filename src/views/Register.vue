@@ -97,7 +97,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { email, required, sameAs, minLength } from 'vuelidate/lib/validators'
 
 export default {
@@ -116,7 +116,8 @@ export default {
   },
   methods: {
     ...mapActions(['register']),
-    submitHandler () {
+    ...mapGetters(['status']),
+    async submitHandler () {
       if (this.$v.$invalid) {
         this.$v.$touch()
         return
@@ -127,13 +128,11 @@ export default {
         email: this.email,
         password: this.password
       }
+      await this.register({ ...formDataRegister })
 
-      this.register({ ...formDataRegister })
-      console.log(this.register.getters.status)
-
-      if (this.register.getters.status === 200) {
+      if (this.status() === 200) {
         this.$router.push('/')
-      } else console.log('error') // добавить в html сообщение об ошибке
+      } else console.log('error status ', this.status()) // добавить в html сообщение об ошибке
     }
   }
 }
