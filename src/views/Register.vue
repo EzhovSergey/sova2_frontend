@@ -1,6 +1,9 @@
 <template>
   <form class="card auth-card" @submit.prevent="submitHandler">
     <div class="card-content">
+      <div class="message-error" v-if="this.status() === 400">
+        Пользователь с таким Email уже существует.
+      </div>
       <span class="card-title">Регистрация</span>
       <div class="input-field">
         <span clas="name-field">Ф.И.О.</span>
@@ -116,7 +119,7 @@ export default {
   },
   methods: {
     ...mapActions(['register']),
-    ...mapGetters(['status']),
+    ...mapGetters(['status', 'token']),
     async submitHandler () {
       if (this.$v.$invalid) {
         this.$v.$touch()
@@ -131,8 +134,10 @@ export default {
       await this.register({ ...formDataRegister })
 
       if (this.status() === 200) {
+        sessionStorage.setItem('fio', this.fio)
+        sessionStorage.setItem('token', this.token())
         this.$router.push('/')
-      } else console.log('error status ', this.status()) // добавить в html сообщение об ошибке
+      }
     }
   }
 }

@@ -1,6 +1,9 @@
 <template>
   <form class="card auth-card" @submit.prevent="submitHandler">
     <div class="card-content">
+      <div class="message-error" v-if="this.status() === 400">
+        Неверный Email или пароль. Пожалуйстра, проверьте их и повторите попытку.
+      </div>
       <span class="card-title">Войти в аккаунт</span>
       <div class="input-field">
         <span class="name-field">Email</span>
@@ -56,7 +59,7 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { email, required, minLength } from 'vuelidate/lib/validators'
 export default {
   name: 'login',
@@ -69,14 +72,25 @@ export default {
     password: { required, minLength: minLength(6) }
   },
   methods: {
+    ...mapActions(['auth']),
+    ...mapGetters(['status', 'token', 'fio']),
     async submitHandler () {
       if (this.$v.$invalid) {
         this.$v.$touch()
         return
       }
-      this.$router.push('/')
+      const formDataAuth = {
+        email: this.email,
+        password: this.password
+      }
+      await this.auth({ ...formDataAuth })
+
+      if (this.status() === 200) {
+        sessionStorage.setItem('fio', this.fio())
+        sessionStorage.setItem('token', this.token())
+        this.$router.push('/')
+      }
     }
   }
 }
-
 </script>

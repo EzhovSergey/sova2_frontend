@@ -2,29 +2,47 @@ import Axios from 'axios'
 
 export default {
   actions: {
-    // use camelCase !!!//
-    async fetch_loginInfo ({ commit }) {
-      await Axios.get('http://localhost:8081/test')
+    async auth ({ commit }, formDataAuth) {
+      await Axios.post('http://localhost:8081/auth', formDataAuth, {
+        headers: {
+          mode: 'no-cors'
+        }
+      })
         .then(res => {
-          const raw = res.data
-          commit('update_loginInfo', raw)
+          commit('updateDataAuth', res)
+        })
+    },
+
+    async register ({ commit }, formDataRegister) {
+      await Axios.post('http://localhost:8081/register', formDataRegister, {
+        headers: {
+          mode: 'no-cors'
+        }
+      })
+        .then(res => {
+          commit('updateDataRegister', res)
         })
     }
   },
   mutations: {
-    // use camelCase !!!//
-    update_loginInfo (state, loginInfo) {
-      console.log(loginInfo)
-      state.loginInfo = loginInfo
+    updateDataAuth (state, res) {
+      state.fio = res.data.fio
+      state.token = res.data.token
+      state.status = res.data.status
+    },
+    updateDataRegister (state, res) {
+      state.token = res.data.token
+      state.status = res.data.status
     }
   },
   state: {
-    loginInfo: []
+    fio: '',
+    token: '',
+    status: null
   },
   getters: {
-    // use camelCase !!!//
-    all_loginInfo (state) {
-      return state.loginInfo
-    }
+    fio: state => state.fio,
+    token: state => state.token,
+    status: state => state.status
   }
 }
