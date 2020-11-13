@@ -38,7 +38,7 @@ export default {
   state: {
     fio: '',
     token: '',
-    status: null
+    status: 0
   },
   getters: {
     fio: state => state.fio,

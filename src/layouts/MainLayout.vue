@@ -11,17 +11,17 @@
         <ul>
           <li><router-link to="/">Мои тесты</router-link></li>
           <li><router-link to="#">Профиль</router-link></li>
-          <li><div @click.prevent="logout">Выход</div></li>
+          <li>
+            <div class="logout" @click.prevent="logout()">
+              <router-link to="/login">Выход</router-link>
+            </div>
+          </li>
         </ul>
       </nav>
     </header>
     <main class="app-content">
       <router-view />
     </main>
-    <!-- <footer class="main-footer">      Заготовка подвала
-      <div class="about_us">
-      </div>
-    </footer> -->
   </div>
 </template>
 
@@ -30,7 +30,6 @@ export default {
   methods: {
     logout () {
       sessionStorage.clear()
-      this.$router.push('/login')
     }
   }
 }
