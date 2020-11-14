@@ -7,7 +7,39 @@
       </div>
     </div>
     <div class="main-page">
-
+      <div class="subjects" v-for="(subject, indexSubject) in subjects" :key="indexSubject">
+        <div class="title-subject">
+          {{subject.subject}}
+        </div>
+        <div class="tests" v-for="(test, indexTest) in subject.tests" :key="indexTest">
+          <div class="title-test">
+            {{test.title}}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
+
+<script>
+import { mapActions, mapGetters } from 'vuex'
+export default {
+  data: () => ({
+    subjects: []
+  }),
+  created () {
+    this.fetchData()
+  },
+  // watch: {
+  //   $roure: 'fetchData'
+  // },
+  methods: {
+    ...mapActions(['tests']),
+    ...mapGetters(['getAll']),
+    async fetchData () {
+      await this.tests()
+      this.subjects = this.getAll()
+    }
+  }
+}
+</script>
