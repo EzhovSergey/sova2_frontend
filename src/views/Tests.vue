@@ -24,21 +24,19 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 export default {
+  name: 'tests',
   data: () => ({
     subjects: []
   }),
   created () {
     this.fetchData()
   },
-  // watch: {
-  //   $roure: 'fetchData'
-  // },
   methods: {
     ...mapActions(['tests']),
-    ...mapGetters(['getAll']),
+    ...mapGetters(['getTestsAll']),
     async fetchData () {
       await this.tests()
-      this.subjects = this.getAll()
+      this.subjects = this.getTestsAll()
     }
   }
 }

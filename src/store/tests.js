@@ -21,6 +21,6 @@ export default {
     tests: {}
   },
   getters: {
-    getAll: state => state.tests
+    getTestsAll: state => state.tests
   }
 }

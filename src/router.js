@@ -17,6 +17,18 @@ const routes = [
     component: () => import('./views/Register.vue')
   },
   {
+    path: '/decision/:id',
+    name: 'decision',
+    meta: { layout: 'empty' },
+    component: () => import('./views/DecisionTest.vue')
+  },
+  {
+    path: '/answer',
+    name: 'answer',
+    meta: { layout: 'empty' },
+    component: () => import('./views/Answer.vue')
+  },
+  {
     path: '/',
     name: 'tests',
     meta: { layout: 'main' },
