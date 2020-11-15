@@ -68,14 +68,9 @@
               v-if="answer.isActive"
               @click.prevent="deleteAnswer(activeQuestion, indexAnswer)"
             >X</button>
-            <label class="numberAnswer">
+            <button class="btn is-correct" @click.prevent="answer.is_it_true = !answer.is_it_true">
               {{indexAnswer + 1}}
-              <input
-                name="indexQuestion"
-                type="checkbox"
-                v-model="answer.is_it_true"
-              >
-            </label>
+            </button>
             <input
               class="input-answer-test"
               type="text"
@@ -175,7 +170,6 @@ export default {
       const formDataCreateTest = {
         title: this.nameTest,
         subject: this.subject,
-        author: sessionStorage.getItem('token'),
         questions: this.questions
       }
       let question = 0
