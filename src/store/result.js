@@ -2,18 +2,18 @@ import Axios from 'axios'
 
 export default {
   actions: {
-    async answer ({ commit }, formData) {
-      await Axios.post(`http://localhost:8081/tests/${formData.id}`, formData.formDataAnswerTest, {
+    async result ({ commit }, formData) {
+      await Axios.post(`http://localhost:8081/tests/${formData.id}`, formData.formDataResultTest, {
         headers: {
           mode: 'no-cors'
         }
       }).then(res => {
-        commit('updateDataAnswerTest', res)
+        commit('updateDataResultTest', res)
       })
     }
   },
   mutations: {
-    updateDataAnswerTest (state, res) {
+    updateDataResultTest (state, res) {
       state.mark = res.data.mark
     }
   },

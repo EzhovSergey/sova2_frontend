@@ -114,7 +114,7 @@ export default {
     $roure: 'fetchData'
   },
   methods: {
-    ...mapActions(['decisionTest', 'answer']),
+    ...mapActions(['decisionTest', 'result']),
     ...mapGetters(['getFieldsTestAll']),
     chooseAnswer (questionId, answerId) {
       let questionIndex = 0
@@ -156,12 +156,12 @@ export default {
         this.$v.$touch()
         return
       }
-      const formDataAnswerTest = {
+      const formDataResultTest = {
         student: this.student,
         questions: this.questions
       }
-      await this.answer({ formDataAnswerTest, id: this.$route.params.id })
-      this.$router.push('/answer')
+      await this.result({ formDataResultTest, id: this.$route.params.id })
+      this.$router.push('/result')
     }
   }
 }

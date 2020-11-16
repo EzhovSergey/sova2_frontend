@@ -4,7 +4,7 @@ import auth from './auth'
 import createTest from './createTest'
 import tests from './tests'
 import decision from './decision'
-import answer from './answer'
+import result from './result'
 
 Vue.use(Vuex)
 
@@ -14,6 +14,6 @@ export default new Vuex.Store({
     createTest,
     tests,
     decision,
-    answer
+    result
   }
 })
