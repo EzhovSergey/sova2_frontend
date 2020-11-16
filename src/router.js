@@ -31,13 +31,13 @@ const routes = [
   {
     path: '/',
     name: 'tests',
-    meta: { layout: 'main' },
+    meta: { layout: 'main', auth: true },
     component: () => import('./views/Tests.vue')
   },
   {
     path: '/create-test',
     name: 'create-test',
-    meta: { layout: 'main' },
+    meta: { layout: 'main', auth: true },
     component: () => import('./views/CreateTest.vue')
   }
 ]
@@ -46,6 +46,17 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const currentUser = sessionStorage.getItem('token')
+  const requireAuth = to.matched.some(record => record.meta.auth)
+
+  if (requireAuth && !currentUser) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router
