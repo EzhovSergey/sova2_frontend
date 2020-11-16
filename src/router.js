@@ -23,10 +23,10 @@ const routes = [
     component: () => import('./views/DecisionTest.vue')
   },
   {
-    path: '/answer',
-    name: 'answer',
+    path: '/result',
+    name: 'result',
     meta: { layout: 'empty' },
-    component: () => import('./views/Answer.vue')
+    component: () => import('./views/Result.vue')
   },
   {
     path: '/',

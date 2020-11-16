@@ -1,5 +1,5 @@
 <template>
-  <div class="page-answer">
+  <div class="page-result">
     <div v-if="mark !== -1">
       Спасибо за прохождение теста, вы набрали {{mark}} баллов, результат отправлен составителю.
     </div>
@@ -9,7 +9,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
-  name: 'answer',
+  name: 'result',
   data: () => ({
     mark: ''
   }),
