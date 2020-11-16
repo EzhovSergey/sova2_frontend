@@ -10,7 +10,7 @@
       <nav class="top-menu">
         <ul>
           <li><router-link to="/">Мои тесты</router-link></li>
-          <li><router-link to="#">Профиль</router-link></li>
+          <li><router-link to="/create-test">Cоздать тест</router-link></li>
           <li>
             <div class="logout" @click.prevent="logout()">
               <router-link to="/login">Выход</router-link>
