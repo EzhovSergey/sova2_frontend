@@ -7,3 +7,28 @@
     <router-view />
   </div>
 </template>
+<style scoped>
+.title-empty-layout{/* Лого+текст*/
+background-color:white;
+padding:0%;
+width:100%;
+position:fixed;
+height:70px;
+margin-top:0px;
+top:0px;
+z-index:9999;
+}
+.logo-empty{/*лого меню без кнопок*/
+margin:8px;
+height:50px;
+display:fixed;
+}
+.name-empty-layout{
+width:450px;
+display:inline;
+color:black;
+font-size:110%;
+margin:1px;
+font-family: 'Oswald',Verdana,sans-serif;
+}
+</style>

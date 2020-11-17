@@ -55,7 +55,7 @@
               class="btn numberAnswer"
               @click.prevent="chooseAnswer(textQuestions[activeQuestion].id, textQuestions[activeQuestion].answers[indexAnswer].id)"
             >
-              {{indexAnswer + 1}}
+              <div class="answer-number-btn" v-bind:class="{yellow:isAnswerChosen(textQuestions[activeQuestion].id, textQuestions[activeQuestion].answers[indexAnswer].id)}">{{indexAnswer + 1}}</div>
               <span class="answer-text">
                 {{answer.text}}
               </span>
@@ -69,18 +69,197 @@
       </div>
       <div class="navigation">
         <div class="list-number-questions" v-for="(question, indexQuestion) in textQuestions" :key="indexQuestion">
-          <button class="number-question" @click.prevent="activeQuestion = indexQuestion">{{indexQuestion + 1}}</button>
+          <button class="btn number-question" @click.prevent="activeQuestion = indexQuestion" v-bind:class="[{yellow: indexQuestion==activeQuestion},{green: indexQuestion!=activeQuestion && isAnswerToQuestion (textQuestions[indexQuestion].id)}]">{{indexQuestion + 1}}</button>
         </div>
       </div>
       <button
-        class="btn waves-effect waves-light auth-submit"
+        class="btn btn-send-test"
         type="submit"
       >Сдать тест
       </button>
     </form>
   </div>
 </template>
-
+<style scoped>
+.user-fio >.helper-text{
+position:absolute;
+padding-left:130px;
+margin-top:60px;
+}
+.user-group >.helper-text{
+position:absolute;
+padding-left:70px;
+margin-top:60px;
+}
+.navigation{
+margin:0px auto;
+display:flex;
+flex-direction:row;
+flex-wrap:wrap;
+justify-content:center;
+width:75%;
+}
+.decision-test{
+border-style:solid;
+border-color:silver;
+border-width:2px;
+background-color:white;
+margin: 100px 15% 30px 15%;
+border-radius:0%;
+font-size:130%;
+font-family: 'Oswald',Verdana,sans-serif;
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+align-items:stretch;
+padding-bottom:25px;
+}
+.title-test{
+flex-basis:100%;
+display:flex;
+align-items:center;
+}
+.subject-test, .author-test{
+flex-basis:50%;
+font-size:85%;
+display:flex;
+align-items:center;
+}
+.title-test > .name-field,.subject-test > .name-field,.author-test > .name-field,.user-fio > .name-field,.user-group > .name-field{
+margin-right:7px;
+}
+.header-test{
+width:75%;
+margin:0px auto;
+display:flex;
+flex-wrap:wrap;
+}
+.user-fio{
+width:60%;
+padding-right:10px;
+display:flex;
+margin-bottom:15px;
+margin-top:7px;
+align-items:center;
+}
+.user-fio > .name-field{
+width:165px;
+}
+.user-group{
+width:40%;
+display:flex;
+margin-bottom:15px;
+margin-top:7px;
+align-items:center;
+}
+span.title-page{
+margin-top:40px;
+margin-bottom:30px;
+}
+.back-questions,.next-questions{
+background-color:white;
+border-style:solid;
+border-color:#FFD780;
+border-radius:20px;
+border-width:2px;
+padding:3px 40px 4px;
+font-size:80%;
+margin:10px 5px;
+}
+.btn-send-test{
+background-color:white;
+border-style:solid;
+border-color:#FFD780;
+border-radius:20px;
+border-width:2px;
+padding:3px 40px 4px;
+font-size:80%;
+display:block;
+margin:10px auto;
+}
+.list-number-questions{
+display:block;
+margin:2px;
+}
+.list-number-questions > .number-question{
+border-style:solid;
+border-radius:8px;
+border-color:black;
+font-size:70%;
+width:30px;
+height:30px;
+padding:0px;
+}
+.question{
+border-top:solid;
+border-color:silver;
+border-width:2px;
+width:85%;
+display:flex;
+flex-wrap:wrap;
+flex-direction:row;
+margin:10px auto 0px;
+padding:20px 5% 5px;
+}
+.text-field{
+display:block;
+font-size:115%;
+}
+.question-text > .number-question{
+flex-basis:100%;
+display:block;
+margin-bottom:10px;
+}
+.question-text{
+flex-basis:100%;
+display:flex;
+flex-direction:column;
+}
+.answer{
+width:100%;
+display:flex;
+flex-direction:row;
+flex-wrap:nowrap;
+align-items:center;
+justify-content:flex-start;
+}
+.answers-to-question{
+width:100%;
+margin-top:10px;
+}
+.numberAnswer{
+display:flex;
+align-items:center;
+}
+.answer-number-btn{
+border-style:solid;
+border-color:black;
+border-radius:15px;
+border-width:1px;
+min-width:25px;
+min-height:25px;
+margin:5px;
+font-size:80%;
+padding:0px;
+padding-top:2px;
+}
+.yellow{
+    background-color:#FFD780;
+}
+.green{
+    background-color:#4CB381;
+}
+.buttons-nav{
+    display:flex;
+    justify-content:space-evenly;
+    border-bottom:solid;
+    border-color:silver;
+    border-width:2px;
+    width:85%;
+    margin:0px auto 30px;
+    padding:0px 5% 10px;
+}
+</style>
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import { required } from 'vuelidate/lib/validators'
@@ -126,6 +305,24 @@ export default {
       } else {
         this.questions[questionIndex].answers.splice(this.questions[questionIndex].answers.indexOf(answerId), 1)
       }
+    },
+    isAnswerChosen (questionId, answerId) {
+      let questionIndex = 0
+      while (questionId !== this.questions[questionIndex].id) {
+        questionIndex += 1
+      }
+      if (this.questions[questionIndex].answers.indexOf(answerId) !== -1) {
+        return true
+      } return false
+    },
+    isAnswerToQuestion (questionId) {
+      let questionIndex = 0
+      while (questionId !== this.questions[questionIndex].id) {
+        questionIndex += 1
+      }
+      if (this.questions[questionIndex].answers.length === 0) {
+        return false
+      } return true
     },
     initialData (testData) {
       this.author.fio = testData.author.fio

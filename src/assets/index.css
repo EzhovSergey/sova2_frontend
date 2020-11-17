@@ -2,21 +2,23 @@
 .card-contet{/*Вид рабочего блока(Регистрация и Авторизация)*/
 	font-family: 'Oswald',Verdana,sans-serif;
 	display:flex;
-	flex-direction:column;
+	flex-flow:column nowrap;
 	justify-content:center;
-	align-items:center;
+	align-items:flex-start;
 }
 .card{/*Вид рабочего блока(Регистрация и Авторизация)*/
 	border-style:solid;
 	border-color:silver;
 	border-width:2px;
 	background-color:white;
-	margin: 3% 15% 0% 15%;
+	margin: 100px 15% 30px 15%;
 	border-radius:0%;
 	font-size:130%;
+	position:static;
 }
 .card-title{/*Название рабочего блока(Регистрация и Авторизация)*/
 	text-align:center;
+	display:block;
 	font-size: 150%;
 	margin:5% 0% 2% 0%;
 	font-family: 'Oswald',Verdana,sans-serif;
@@ -24,8 +26,9 @@
 .title-page{/*Название рабочего блока*/
 	text-align:center;
 	font-size: 150%;
-	margin:5% 0% 2% 0%;
+	margin:30px 0px 5px 0px;
 	font-family: 'Oswald',Verdana,sans-serif;
+	padding:0px;
 }
 .input-field{/*Блок для поля ввода(+надписи ошибок)*/
 	width:60%;
@@ -45,7 +48,7 @@
 	margin:2% auto 1%;
 	background-color:#FFD780;
 	font-size:90%;
-	padding:1% 2%;
+	padding:6px 15px 8px 15px;
 	border-radius:20px;
 	display:block;
 	align-self:center;
@@ -53,97 +56,41 @@
 }
 .helper-text.invalid{/*Текст ошибки ввода данных пользователя*/
 	display:block;
-	position:relative;
+	position:static;
 	font-size:70%;
 	color:red;
 	font-family: 'Oswald',Verdana,sans-serif;
 }
-.title-empty-layout{/* Меню без кнопок*/
-	background-color:white;
-	padding:0% 0% 1.5% 0%;
-	height:70px;
-}
-.title-main-layout{/*Меню с кнопками*/
-	padding:0% 0% 1.5% 0%;
-	display:inline;
-	width:15%;
-}
-.title-main-layout a:hover{
-	text-decoration:none;
-}
-.navbar{/*Меню с кнопками*/
-	display:flex;
-	flex-direction:row;
-	align-content:top;
-	justify-content:space-between;
-	background-color:white;
-	height:70px;
-}
-.top-menu li{/*Кнопки меню по отдельности*/
-	background-color:#FFD780;
-	display:flex;
-	margin: 2% 2%;
-	border-radius:20px;
+.message-error{
 	text-align:center;
-	align-items:center;
-	padding:0% 4%;
-}
-.top-menu ul{/*Кнопки меню вместе*/
-	display:flex;
-	align-items:stretch;
-	justify-content:space-around;
-	width:290px;
-	height:55px;
-	list-style-type:none;
-}
-span{/*Надписи ФИО,Email и тд*/
+	margin:15px;
 	display:block;
-	margin:1% 0%;
+	position:static;
+	font-size:70%;
+	color:red;
+	font-family: 'Oswald',Verdana,sans-serif;
 }
 input{/*поле для ввода*/
 	color:black;
-	font-size:70%;
+	font-size:80%;
 	text-align:center;
 	width:100%;
 	height:40px;
-	display:block;
+	display:inline-block;
 	border-color:#FFD780;
 	border-style:solid;
 }
 body{/*весь сайт*/
 	background-color:silver;
 	background-image:url("/img/background.jpg");
-	background-size:90%;
-}
-.logo-main{/*лого меню с кнопками*/
-	height:50px;
-	margin:1% 9% 0% 0.7%;
-}
-.logo-empty{/*лого меню без кнопок*/
-	margin:0.7% 1.3%;
-	height:50px;
-}
-.name-main-layout{
-	display:inline;
-	color:black;
-	font-size:110%;
-	font-family: 'Oswald',Verdana,sans-serif;
-	margin:0% 0.2% 0% 0%;
-}
-
-.name-empty-layout{
-	display:inline;
-	color:black;
-	font-size:110%;
-	margin:0% 0.2% 0% 0%;
-	font-family: 'Oswald',Verdana,sans-serif;
+	background-size:1200px;
 }
 .main-page-tests{
 	border-style:solid;
 	border-color:silver;
 	border-width:2px;
 	background-color:white;
-	margin: 3% 15% 0% 15%;
+	margin: 100px 15% 0% 15%;
 	border-radius:0%;
 	font-size:130%;
 	font-family: 'Oswald',Verdana,sans-serif;
@@ -161,15 +108,23 @@ body{/*весь сайт*/
 	border-style:solid;
 	border-color:#FFD780;
 	border-radius:20px;
-	margin:20% 0% 30% auto;
-	padding:3% 10% 7% 10%;
-	width:110%;
+	background-color:white;
+	margin:10px auto 10px auto;
+	padding:3px 15px 7px 15px;
+	color:black;
 }
 li a,.button-create-test a{
 	font-family: 'Oswald',Verdana,sans-serif;
 	color:black;
 }
-li a:hover,.button-create-test a:hover{
+li a:hover,.button-create-test a:hover,.button-create-test:hover{
 	color:gray;
 	text-decoration:none;
+}
+.name-field{
+	display:block;
+	margin:7px 0px;
+}
+.break{
+	flex-basis:100%;
 }
