@@ -39,6 +39,12 @@ const routes = [
     name: 'create-test',
     meta: { layout: 'main', auth: true },
     component: () => import('./views/CreateTest.vue')
+  },
+  {
+    path: '/test/:id',
+    name: 'testResult',
+    meta: { layout: 'main', auth: true },
+    component: () => import('./views/TestResult.vue')
   }
 ]
 

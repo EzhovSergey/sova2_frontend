@@ -5,6 +5,7 @@ import createTest from './createTest'
 import tests from './tests'
 import decision from './decision'
 import result from './result'
+import testResult from './testResult'
 
 Vue.use(Vuex)
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     createTest,
     tests,
     decision,
-    result
+    result,
+    testResult
   }
 })

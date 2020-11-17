@@ -1,5 +1,5 @@
 <template>
-  <div class="page-result">
+  <div>
     <div v-if="mark !== -1">
       Спасибо за прохождение теста, вы набрали {{mark}} баллов, результат отправлен составителю.
     </div>
@@ -7,20 +7,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
   name: 'result',
   data: () => ({
     mark: ''
   }),
   created () {
-    this.setMark()
-  },
-  methods: {
-    ...mapGetters(['getMark']),
-    setMark () {
-      this.mark = this.getMark()
-    }
+    this.mark = this.$route.query.mark
   }
 }
 </script>

@@ -115,7 +115,7 @@ export default {
   },
   methods: {
     ...mapActions(['decisionTest', 'result']),
-    ...mapGetters(['getFieldsTestAll']),
+    ...mapGetters(['getFieldsTestAll', 'getMark']),
     chooseAnswer (questionId, answerId) {
       let questionIndex = 0
       while (questionId !== this.questions[questionIndex].id) {
@@ -161,7 +161,7 @@ export default {
         questions: this.questions
       }
       await this.result({ formDataResultTest, id: this.$route.params.id })
-      this.$router.push('/result')
+      this.$router.push({ path: '/result', query: { mark: this.getMark() } })
     }
   }
 }
