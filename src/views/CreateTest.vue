@@ -64,12 +64,9 @@
           <div class="mouseover answer"
             v-for="(answer, indexAnswer) in questions[activeQuestion].answers"
             :key="indexAnswer"
-            v-on:mouseover.prevent="answer.isActive = !answer.isActive"
-            v-on:mouseleave.prevent="answer.isActive = false"
           >
             <button
               class="btn is-active delete-answer"
-              v-if="answer.isActive"
               @click.prevent="deleteAnswer(activeQuestion, indexAnswer)"
             >&#10006;</button>
             <button class="btn answer-btn" @click.prevent="answer.is_it_true = !answer.is_it_true"

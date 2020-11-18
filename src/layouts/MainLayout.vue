@@ -22,6 +22,8 @@
     <main class="app-content">
       <router-view />
     </main>
+    <footer>
+    </footer>
   </div>
 </template>
 <style scoped>

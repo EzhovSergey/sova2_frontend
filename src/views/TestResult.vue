@@ -9,10 +9,11 @@
     <div v-if="results.length">
       <div v-for="(result, indexResult) in results" :key="indexResult">
         <span>{{result.group}}</span>
-        <div v-for="(student, indexStudent) in result.students" :key="indexStudent">
-          <div>{{student.fio}}</div>
-          <div>{{student.mark}}</div>
-        </div>
+        <table>
+          <tr v-for="(student, indexStudent) in result.students" :key="indexStudent">
+            <td>{{student.fio}}</td><td>{{student.mark}}</td>
+          </tr>
+        </table>
       </div>
     </div>
     <div v-else>
