@@ -12,9 +12,11 @@
           <li><router-link to="/" class="menu-btn">Мои тесты</router-link></li>
           <li><router-link to="/create-test" class="menu-btn">Cоздать тест</router-link></li>
           <li>
-            <div class="logout" @click.prevent="logout()">
-              <router-link to="/login">Выход</router-link>
-            </div>
+            <router-link to="/login">
+              <div class="logout" @click="logout()">
+                Выход
+              </div>
+            </router-link>
           </li>
         </ul>
       </nav>

@@ -2,7 +2,7 @@
   <div class="create-test">
     <span class="title-page">&#9998; Cоздание теста</span>
     <form class="create-test-card" @submit.prevent="submitHandler">
-      <div class="header-test">
+      <div class="header-test" v-if="activeQuestion == -1">
         <div class="name-test">
           <span class="name-field">Название теста:</span>
           <input
@@ -29,24 +29,11 @@
             v-if="$v.subject.$dirty && !$v.subject.required"
           >Заполните это поле</small>
         </div>
-      </div>
-      <div class="navigation">
-        <span class="text-before-q-btn">Вопросы</span>
-        <div class="list-number-questions" v-for="(question, indexQuestion) in questions" :key="indexQuestion">
-          <button class="btn number-question" @click.prevent="activeQuestion = indexQuestion"
-          v-bind:class="{yellow: indexQuestion==activeQuestion}"
-          >{{indexQuestion + 1}}</button>
+        <div class="buttons-nav">
+          <button class="next-questions" @click.prevent="nextQuestions()">Вперед</button>
         </div>
-        <div class="break">
-        </div>
-        <button class="btn create-question" @click.prevent="addQuestion()">
-          Добавить вопрос
-        </button>
-        <button class="btn delete-question" @click.prevent="deleteQuestion(activeQuestion)">
-          Удалить вопрос
-        </button>
       </div>
-      <div class="question">
+      <div class="question" v-else>
         <div class="question-text">
           <span class="number-question">Вопрос {{activeQuestion + 1}}</span>
           <textarea
@@ -91,12 +78,34 @@
             Добавить вариант ответа
           </button>
         </div>
+        <div class="buttons-nav">
+          <button class="back-questions" @click.prevent="backQuestions()">Назад</button>
+          <button class="next-questions" @click.prevent="nextQuestions()">Вперед</button>
       </div>
-        <button
-          class="button-create-test"
-          type="submit"
-        >Создать тест
+      </div>
+      <div class="navigation">
+        <button @click.prevent="activeQuestion = -1">
+          Г
         </button>
+        <div class="list-number-questions" v-for="(question, indexQuestion) in questions" :key="indexQuestion">
+          <button class="btn number-question" @click.prevent="activeQuestion = indexQuestion"
+          v-bind:class="{yellow: indexQuestion==activeQuestion}"
+          >{{indexQuestion + 1}}</button>
+        </div>
+        <div class="break">
+        </div>
+        <button class="btn create-question" @click.prevent="addQuestion()">
+          Добавить вопрос
+        </button>
+        <button class="btn delete-question" @click.prevent="deleteQuestion(activeQuestion)">
+          Удалить вопрос
+        </button>
+      </div>
+      <button
+        class="button-create-test"
+        type="submit"
+      >Создать тест
+      </button>
     </form>
   </div>
 </template>
@@ -273,7 +282,7 @@ export default {
   data: () => ({
     nameTest: '',
     subject: '',
-    activeQuestion: 0,
+    activeQuestion: -1,
     questions: [{
       text: '',
       answers: [{
@@ -302,6 +311,14 @@ export default {
   methods: {
     ...mapActions(['createTest']),
     ...mapGetters(['getIdTest']),
+    backQuestions () {
+      if (this.activeQuestion === -1) return
+      this.activeQuestion -= 1
+    },
+    nextQuestions () {
+      if (this.activeQuestion >= this.questions.length - 1) return
+      this.activeQuestion += 1
+    },
     addAnswer (index) {
       this.questions[index].answers.push({
         isActive: false,
@@ -353,6 +370,7 @@ export default {
     },
     async submitHandler () {
       if (this.$v.$invalid) {
+        this.activeQuestion = -1
         this.$v.$touch()
         return
       }

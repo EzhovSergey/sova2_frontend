@@ -10,7 +10,7 @@
 export default {
   name: 'result',
   data: () => ({
-    mark: ''
+    mark: -1
   }),
   created () {
     this.mark = this.$route.query.mark

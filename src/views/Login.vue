@@ -1,7 +1,7 @@
 <template>
   <form class="card auth-card" @submit.prevent="submitHandler">
     <div class="card-content">
-      <div class="message-error" v-if="this.status() === 400">
+      <div class="message-error" v-if="this.status() == 500">
         Неверный Email или пароль. Пожалуйстра, проверьте их и повторите попытку.
       </div>
       <span class="card-title">Войти в аккаунт</span>
@@ -71,9 +71,15 @@ export default {
     email: { email, required },
     password: { required, minLength: minLength(6) }
   },
+  created () {
+    this.initialStatus()
+  },
   methods: {
-    ...mapActions(['auth']),
+    ...mapActions(['auth', 'statusNull']),
     ...mapGetters(['status', 'token', 'fio']),
+    initialStatus () {
+      this.statusNull()
+    },
     async submitHandler () {
       if (this.$v.$invalid) {
         this.$v.$touch()

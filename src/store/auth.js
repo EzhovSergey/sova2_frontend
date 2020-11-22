@@ -2,6 +2,10 @@ import Axios from 'axios'
 
 export default {
   actions: {
+    async statusNull ({ commit }) {
+      await commit('updateStatus')
+    },
+
     async auth ({ commit }, formDataAuth) {
       await Axios.post('http://localhost:8081/auth', formDataAuth, {
         headers: {
@@ -10,6 +14,10 @@ export default {
       })
         .then(res => {
           commit('updateDataAuth', res)
+        })
+        .catch(e => {
+          console.log(e)
+          commit('updateError')
         })
     },
 
@@ -22,17 +30,27 @@ export default {
         .then(res => {
           commit('updateDataRegister', res)
         })
+        .catch(e => {
+          console.log(e)
+          commit('updateError')
+        })
     }
   },
   mutations: {
     updateDataAuth (state, res) {
       state.fio = res.data.fio
       state.token = res.data.token
-      state.status = res.data.status
+      state.status = res.status
     },
     updateDataRegister (state, res) {
       state.token = res.data.token
-      state.status = res.data.status
+      state.status = res.status
+    },
+    updateError (state) {
+      state.status = 500
+    },
+    updateStatus (state) {
+      state.status = 0
     }
   },
   state: {

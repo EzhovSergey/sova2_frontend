@@ -16,6 +16,7 @@
             <ul>
               <li>Редактировать тест</li>
               <li><button @click.prevent="pushResults(test.test_id, test.title)">Посмотреть результаты</button></li>
+              <li><button @click.prevent="copy(test.test_id)">Копировать ссылку</button></li>
               <li>Удалить тест</li>
             </ul>
           </div>
@@ -55,6 +56,10 @@ export default {
     async fetchData () {
       await this.tests()
       this.initialData(this.getTestsAll())
+    },
+    copy (TestId) {
+      const link = `http://localhost:8080/decision/${TestId}`
+      navigator.clipboard.writeText(link)
     }
   }
 }

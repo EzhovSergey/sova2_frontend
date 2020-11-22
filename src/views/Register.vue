@@ -1,7 +1,7 @@
 <template>
   <form class="card auth-card" @submit.prevent="submitHandler">
     <div class="card-content">
-      <div class="message-error" v-if="this.status() === 400">
+      <div class="message-error" v-if="this.status() == 500">
         Пользователь с таким Email уже существует.
       </div>
       <span class="card-title">Регистрация</span>
@@ -117,9 +117,15 @@ export default {
     password: { required, minLength: minLength(6) },
     repeat_password: { sameAsPassword: sameAs('password') }
   },
+  created () {
+    this.initialStatus()
+  },
   methods: {
-    ...mapActions(['register']),
+    ...mapActions(['register', 'statusNull']),
     ...mapGetters(['status', 'token']),
+    initialStatus () {
+      this.statusNull()
+    },
     async submitHandler () {
       if (this.$v.$invalid) {
         this.$v.$touch()

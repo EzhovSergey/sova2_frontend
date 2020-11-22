@@ -2,7 +2,7 @@
   <div class="decision-test">
     <span class="title-page">Решение теста</span>
     <form class="decision-test-card" @submit.prevent="submitHandler">
-      <div class="header-test">
+      <div class="header-test" v-if="activeQuestion == -1">
         <div class="title-test">
           <span class="name-field">Название теста:</span>
           {{title}}
@@ -41,8 +41,11 @@
             v-if="$v.student.group.$dirty && !$v.student.group.required"
           >Заполните это поле</small>
         </div>
+        <div class="buttons-nav">
+          <button class="next-questions" @click.prevent="nextQuestions()">Вперед</button>
+        </div>
       </div>
-      <div class="question">
+      <div class="question" v-else>
         <div class="question-text">
           <span class="number-question">Вопрос {{activeQuestion + 1}}</span>
             <div class="text-field">
@@ -55,21 +58,30 @@
               class="btn numberAnswer"
               @click.prevent="chooseAnswer(textQuestions[activeQuestion].id, textQuestions[activeQuestion].answers[indexAnswer].id)"
             >
-              <div class="answer-number-btn" v-bind:class="{yellow:isAnswerChosen(textQuestions[activeQuestion].id, textQuestions[activeQuestion].answers[indexAnswer].id)}">{{indexAnswer + 1}}</div>
+              <div class="answer-number-btn"
+                v-bind:class="{yellow:isAnswerChosen(textQuestions[activeQuestion].id, textQuestions[activeQuestion].answers[indexAnswer].id)}"
+              >{{indexAnswer + 1}}</div>
               <span class="answer-text">
                 {{answer.text}}
               </span>
             </button>
           </div>
         </div>
-      </div>
-      <div class="buttons-nav">
-        <button class="back-questions" @click.prevent="backQuestions()">Назад</button>
-        <button class="next-questions" @click.prevent="nextQuestions()">Вперед</button>
+        <div class="buttons-nav">
+          <button class="back-questions" @click.prevent="backQuestions()">Назад</button>
+          <button class="next-questions" @click.prevent="nextQuestions()">Вперед</button>
+        </div>
       </div>
       <div class="navigation">
+        <button @click.prevent="activeQuestion = -1">
+          Г
+        </button>
         <div class="list-number-questions" v-for="(question, indexQuestion) in textQuestions" :key="indexQuestion">
-          <button class="btn number-question" @click.prevent="activeQuestion = indexQuestion" v-bind:class="[{yellow: indexQuestion==activeQuestion},{green: indexQuestion!=activeQuestion && isAnswerToQuestion (textQuestions[indexQuestion].id)}]">{{indexQuestion + 1}}</button>
+          <button class="btn number-question"
+            @click.prevent="activeQuestion = indexQuestion"
+            v-bind:class="[{yellow: indexQuestion==activeQuestion},{green: indexQuestion!=activeQuestion && isAnswerToQuestion (textQuestions[indexQuestion].id)}]"
+          >{{indexQuestion + 1}}
+          </button>
         </div>
       </div>
       <button
@@ -266,7 +278,7 @@ import { required } from 'vuelidate/lib/validators'
 export default {
   name: 'decision',
   data: () => ({
-    activeQuestion: 0,
+    activeQuestion: -1,
     student: {
       fio: '',
       group: ''
@@ -337,7 +349,7 @@ export default {
       }
     },
     backQuestions () {
-      if (this.activeQuestion === 0) return
+      if (this.activeQuestion === -1) return
       this.activeQuestion -= 1
     },
     nextQuestions () {
@@ -350,6 +362,7 @@ export default {
     },
     async submitHandler () {
       if (this.$v.$invalid) {
+        this.activeQuestion = -1
         this.$v.$touch()
         return
       }
