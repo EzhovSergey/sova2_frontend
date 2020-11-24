@@ -7,7 +7,7 @@ export default {
     },
 
     async auth ({ commit }, formDataAuth) {
-      await Axios.post('http://localhost:8081/auth', formDataAuth, {
+      await Axios.post('http://sova-app-backend.herokuapp.com/auth', formDataAuth, {
         headers: {
           mode: 'no-cors'
         }
@@ -22,7 +22,7 @@ export default {
     },
 
     async register ({ commit }, formDataRegister) {
-      await Axios.post('http://localhost:8081/register', formDataRegister, {
+      await Axios.post('http://sova-app-backend.herokuapp.com/register', formDataRegister, {
         headers: {
           mode: 'no-cors'
         }

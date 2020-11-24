@@ -3,7 +3,7 @@ import Axios from 'axios'
 export default {
   actions: {
     async decisionTest ({ commit }, testId) {
-      await Axios.get(`http://localhost:8081/tests/${testId}`, {
+      await Axios.get(`http://sova-app-backend.herokuapp.com/tests/${testId}`, {
         headers: {
           mode: 'no-cors'
         }

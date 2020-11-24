@@ -3,7 +3,7 @@ import Axios from 'axios'
 export default {
   actions: {
     async createTest ({ commit }, formDataCreateTest) {
-      await Axios.post(`http://localhost:8081/${sessionStorage.getItem('token')}/tests`, formDataCreateTest, {
+      await Axios.post(`http://sova-app-backend.herokuapp.com/${sessionStorage.getItem('token')}/tests`, formDataCreateTest, {
         headers: {
           mode: 'no-cors'
         }
