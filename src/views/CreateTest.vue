@@ -84,7 +84,8 @@
       </div>
       </div>
       <div class="navigation">
-        <button @click.prevent="activeQuestion = -1">
+        <button @click.prevent="activeQuestion = -1" class="btn main-q"
+        v-bind:class="{yellow: activeQuestion==-1}">
           Г
         </button>
         <div class="list-number-questions" v-for="(question, indexQuestion) in questions" :key="indexQuestion">
@@ -102,7 +103,7 @@
         </button>
       </div>
       <button
-        class="button-create-test"
+        class="btn-create-test"
         type="submit"
       >Создать тест
       </button>
@@ -130,12 +131,56 @@ padding-left:140px;
 margin-top:40px;
 }
 .navigation{
+    display:flex;
+    position:fixed;
+    bottom:0px;
+    border-left:solid;
+    border-right:solid;
+    border-color:silver;
+    border-width:2px;
+    background-color:white;
+    padding-bottom:10px;
+    flex-direction:row;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    width:70%;
+    left:15%;
+}
+.buttons-nav{
+    border-top:solid;
+    border-color:silver;
+    border-width:2px;
+    bottom:0px;
+    left:15%;
+    background-color:white;
+    position:fixed;
+    display:flex;
+    justify-content:space-evenly;
+    width:60%;
+    left:20%;
+    padding-bottom:100px;
+}
+.back-questions,.next-questions{
+background-color:white;
+border-style:solid;
+border-color:#FFD780;
+border-radius:20px;
+border-width:2px;
+padding:3px 40px 4px;
+font-size:80%;
+margin:10px 5px;
+}
+.btn-create-test{
 margin:0px auto;
-display:flex;
-flex-direction:row;
-flex-wrap:wrap;
-justify-content:center;
-width:75%;
+background-color:white;
+border-style:solid;
+border-color:#FFD780;
+border-radius:20px;
+border-width:2px;
+padding:3px 40px 4px;
+font-size:80%;
+display:block;
 }
 .create-test{
 border-style:solid;
@@ -150,7 +195,7 @@ display:flex;
 flex-direction:column;
 justify-content:flex-start;
 align-items:stretch;
-padding-bottom:25px;
+padding-bottom:12%;
 }
 .header-test{
 width:75%;
@@ -190,10 +235,6 @@ text-align:center;
 font-size:115%;
 }
 .question{
-border-top:solid;
-border-bottom:solid;
-border-color:silver;
-border-width:2px;
 width:85%;
 display:flex;
 flex-wrap:wrap;
@@ -272,6 +313,18 @@ border-width:2px;
 padding:3px 15px 4px;
 font-size:80%;
 margin:10px 0px;
+}
+.main-q{
+display:inline-block;
+margin:2px;
+border-style:solid;
+border-radius:8px;
+border-color:black;
+font-size:70%;
+width:30px;
+height:30px;
+padding:0px;
+margin:4px 2px 0px;
 }
 </style>
 <script>

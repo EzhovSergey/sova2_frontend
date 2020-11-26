@@ -73,13 +73,14 @@
         </div>
       </div>
       <div class="navigation">
-        <button @click.prevent="activeQuestion = -1">
+        <button @click.prevent="activeQuestion = -1" class="btn main-q"
+        v-bind:class="{yellow: activeQuestion==-1}">
           Г
         </button>
         <div class="list-number-questions" v-for="(question, indexQuestion) in textQuestions" :key="indexQuestion">
           <button class="btn number-question"
             @click.prevent="activeQuestion = indexQuestion"
-            v-bind:class="[{yellow: indexQuestion==activeQuestion},{green: indexQuestion!=activeQuestion && isAnswerToQuestion (textQuestions[indexQuestion].id)}]"
+            v-bind:class="[{yellow: indexQuestion==activeQuestion},{hasAnswer: indexQuestion!=activeQuestion && isAnswerToQuestion (textQuestions[indexQuestion].id)}]"
           >{{indexQuestion + 1}}
           </button>
         </div>
@@ -104,19 +105,28 @@ padding-left:70px;
 margin-top:60px;
 }
 .navigation{
-margin:0px auto;
-display:flex;
-flex-direction:row;
-flex-wrap:wrap;
-justify-content:center;
-width:75%;
+    display:flex;
+    position:fixed;
+    bottom:0px;
+    border-left:solid;
+    border-right:solid;
+    border-color:silver;
+    border-width:2px;
+    background-color:white;
+    padding-bottom:10px;
+    flex-direction:row;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    width:70%;
+    left:15%;
 }
 .decision-test{
 border-style:solid;
 border-color:silver;
 border-width:2px;
 background-color:white;
-margin: 100px 15% 30px 15%;
+margin: 100px 15% 0px 15%;
 border-radius:0%;
 font-size:130%;
 font-family: 'Oswald',Verdana,sans-serif;
@@ -124,7 +134,7 @@ display:flex;
 flex-direction:column;
 justify-content:flex-start;
 align-items:stretch;
-padding-bottom:25px;
+padding-bottom:17%;
 }
 .title-test{
 flex-basis:100%;
@@ -179,19 +189,32 @@ font-size:80%;
 margin:10px 5px;
 }
 .btn-send-test{
+margin:10px auto;
+bottom:20px;
 background-color:white;
 border-style:solid;
 border-color:#FFD780;
 border-radius:20px;
-border-width:2px;
+border-width:3px;
 padding:3px 40px 4px;
 font-size:80%;
 display:block;
-margin:10px auto;
 }
 .list-number-questions{
 display:block;
 margin:2px;
+}
+.main-q{
+display:inline-block;
+margin:2px;
+border-style:solid;
+border-radius:8px;
+border-color:black;
+font-size:70%;
+width:30px;
+height:30px;
+padding:0px;
+margin:4px 2px 0px;
 }
 .list-number-questions > .number-question{
 border-style:solid;
@@ -203,15 +226,12 @@ height:30px;
 padding:0px;
 }
 .question{
-border-top:solid;
-border-color:silver;
-border-width:2px;
 width:85%;
 display:flex;
 flex-wrap:wrap;
 flex-direction:row;
 margin:10px auto 0px;
-padding:20px 5% 5px;
+padding:10px 5% 5px;
 }
 .text-field{
 display:block;
@@ -228,48 +248,51 @@ display:flex;
 flex-direction:column;
 }
 .answer{
-width:100%;
-display:flex;
-flex-direction:row;
-flex-wrap:nowrap;
-align-items:center;
-justify-content:flex-start;
+    width:100%;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    align-items:center;
+    justify-content:flex-start;
 }
 .answers-to-question{
-width:100%;
-margin-top:10px;
+    width:100%;
+    margin-top:10px;
 }
 .numberAnswer{
-display:flex;
-align-items:center;
+    display:flex;
+    align-items:center;
 }
 .answer-number-btn{
-border-style:solid;
-border-color:black;
-border-radius:15px;
-border-width:1px;
-min-width:25px;
-min-height:25px;
-margin:5px;
-font-size:80%;
-padding:0px;
-padding-top:2px;
+    border-style:solid;
+    border-radius:15px;
+    border-width:1px;
+    min-width:25px;
+    min-height:25px;
+    margin:5px;
+    font-size:80%;
+    padding:0px;
+    padding-top:2px;
 }
 .yellow{
     background-color:#FFD780;
 }
-.green{
-    background-color:#4CB381;
+.hasAnswer{
+    background-color:#FFF7A0;
 }
 .buttons-nav{
-    display:flex;
-    justify-content:space-evenly;
-    border-bottom:solid;
+    border-top:solid;
     border-color:silver;
     border-width:2px;
-    width:85%;
-    margin:0px auto 30px;
-    padding:0px 5% 10px;
+    bottom:0px;
+    left:15%;
+    background-color:white;
+    position:fixed;
+    display:flex;
+    justify-content:space-evenly;
+    width:60%;
+    left:20%;
+    padding-bottom:50px;
 }
 </style>
 <script>

@@ -10,6 +10,9 @@
 <style scoped>
 .title-empty-layout{/* Лого+текст*/
 background-color:white;
+border-bottom:solid;
+border-color:silver;
+border-width:2px;
 padding:0%;
 width:100%;
 position:fixed;

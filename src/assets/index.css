@@ -6,6 +6,10 @@
 	justify-content:center;
 	align-items:flex-start;
 }
+button,.btn,.btn:active,.btn:focus{
+	outline:none !important;
+	box-shadow: none!important;
+}
 .card{/*Вид рабочего блока(Регистрация и Авторизация)*/
 	border-style:solid;
 	border-color:silver;
@@ -85,20 +89,6 @@ body{/*весь сайт*/
 	background-image:url("/img/background.jpg");
 	background-size:1200px;
 }
-.main-page-tests{
-	border-style:solid;
-	border-color:silver;
-	border-width:2px;
-	background-color:white;
-	margin: 100px 15% 0% 15%;
-	border-radius:0%;
-	font-size:130%;
-	font-family: 'Oswald',Verdana,sans-serif;
-	display:flex;
-	flex-direction:column;
-	justify-content:center;
-	align-items:center;
-}
 .title-page{
 	margin: 20% 0%;
 }
@@ -107,10 +97,10 @@ body{/*весь сайт*/
 	text-align:center;
 	border-style:solid;
 	border-color:#FFD780;
-	border-radius:20px;
+	border-radius:30px;
 	background-color:white;
-	margin:10px auto 10px auto;
-	padding:3px 15px 7px 15px;
+	margin:20px auto 20px auto;
+	padding:3px 25px 7px 25px;
 	color:black;
 }
 li a,.button-create-test a{

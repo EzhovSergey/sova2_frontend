@@ -2,7 +2,7 @@
   <form class="card auth-card" @submit.prevent="submitHandler">
     <div class="card-content">
       <div class="message-error" v-if="this.status() == 500">
-        Неверный Email или пароль. Пожалуйстра, проверьте их и повторите попытку.
+        Неверный Email или пароль. Пожалуйста, проверьте их и повторите попытку.
       </div>
       <span class="card-title">Войти в аккаунт</span>
       <div class="input-field">
