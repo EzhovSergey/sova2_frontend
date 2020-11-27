@@ -81,7 +81,7 @@
         <div class="buttons-nav">
           <button class="back-questions" @click.prevent="backQuestions()">Назад</button>
           <button class="next-questions" @click.prevent="nextQuestions()">Вперед</button>
-      </div>
+        </div>
       </div>
       <div class="navigation">
         <button @click.prevent="activeQuestion = -1" class="btn main-q"
@@ -187,7 +187,7 @@ border-style:solid;
 border-color:silver;
 border-width:2px;
 background-color:white;
-margin: 100px 15% 30px 15%;
+margin: 100px 15% 0px 15%;
 border-radius:0%;
 font-size:130%;
 font-family: 'Oswald',Verdana,sans-serif;
@@ -195,7 +195,9 @@ display:flex;
 flex-direction:column;
 justify-content:flex-start;
 align-items:stretch;
-padding-bottom:12%;
+min-height: -moz-calc(100vh - 100px);
+min-height: calc(100vh - 100px);
+padding-bottom:180px;
 }
 .header-test{
 width:75%;
@@ -239,7 +241,7 @@ width:85%;
 display:flex;
 flex-wrap:wrap;
 flex-direction:row;
-margin:10px auto 30px;
+margin:10px auto 0px;
 padding:20px 5%;
 }
 .field-question{
@@ -324,7 +326,7 @@ font-size:70%;
 width:30px;
 height:30px;
 padding:0px;
-margin:4px 2px 0px;
+margin:auto 2px 2px;
 }
 </style>
 <script>

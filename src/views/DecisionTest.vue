@@ -134,7 +134,9 @@ display:flex;
 flex-direction:column;
 justify-content:flex-start;
 align-items:stretch;
-padding-bottom:17%;
+min-height: -moz-calc(100vh - 100px);
+min-height: calc(100vh - 100px);
+padding-bottom:120px;
 }
 .title-test{
 flex-basis:100%;
@@ -206,7 +208,6 @@ margin:2px;
 }
 .main-q{
 display:inline-block;
-margin:2px;
 border-style:solid;
 border-radius:8px;
 border-color:black;
@@ -214,7 +215,7 @@ font-size:70%;
 width:30px;
 height:30px;
 padding:0px;
-margin:4px 2px 0px;
+margin:auto 2px 2px;
 }
 .list-number-questions > .number-question{
 border-style:solid;
